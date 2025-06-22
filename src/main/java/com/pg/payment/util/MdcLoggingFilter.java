@@ -1,7 +1,8 @@
-package com.pg.payment.util.filter;
+package com.pg.payment.util;
 
 import jakarta.annotation.Nonnull;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.MDC;
@@ -18,12 +19,11 @@ public class MdcLoggingFilter extends OncePerRequestFilter {
     private static final String URI_KEY = "requestURI";
     private static final String METHOD_KEY = "requestMethod";
     
-    
     @Override
     protected void doFilterInternal(@Nonnull HttpServletRequest request,
                                     @Nonnull HttpServletResponse response,
                                     @Nonnull FilterChain filterChain)
-            throws IOException, jakarta.servlet.ServletException {
+            throws IOException, ServletException {
         
         try {
             String traceId = generateTraceId();
