@@ -51,10 +51,19 @@
         </encoder>
     </appender>
 
-    <root level="DEBUG">
+    <!-- Root Logger: INFO 이상 (시스템 로그) -->
+    <root level="INFO">
         <appender-ref ref="MODULE_FILE"/>
         <appender-ref ref="ERROR_FILE"/>
         <appender-ref ref="CONSOLE"/>
     </root>
+
+    <!-- 사용자 애플리케이션 로그는 DEBUG 이상 -->
+    <logger name="com.pg.payment" level="DEBUG" additivity="false">
+        <appender-ref ref="MODULE_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
 
 </configuration>
